@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: forum-service
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/your-project/forum-service
+          env:
+            - name: PORT
+              value: "8080"
+            - name: JWT_SECRET
+              value: "your_jwt_secret"
+            - name: FIRESTORE_PROJECT_ID
+              value: "your_firestore_project_id"
+          ports:
+            - containerPort: 8080
